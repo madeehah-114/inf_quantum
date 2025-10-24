@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Share Market LSTM Forecast</title>
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+<h1>BSE Forecasting Model</h1>
+
+
+ 
+		 
+<form action="/forecast_bse" method="post">
+
+<label for="days">Forecast Days:</label>
+<input type="number" id="days" name="days" value="5" min="1" max="30">
+<button type="submit">Forecast</button>
+</form>
+ 
+        {% if forecast %}
+<h2>Forecasted Closing Prices:</h2>
+<table>
+<tr>
+<th>Date</th>
+<th>Predicted Close</th>
+</tr>
+
+                {% for row in forecast %}
+<tr>
+<td>{{ row.date }}</td>
+<td>{{ "%.2f"|format(row.pred_close) }}</td>
+</tr>
+
+                {% endfor %}
+</table>
+
+        {% endif %}
+</div>
+</body>
+</html>
+ 
+<style>
+
+/* General body */
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background-color: #f4f6f8;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+ 
+/* Container */
+
+.container {
+
+    max-width: 900px;
+
+    margin: 50px auto;
+
+    padding: 30px;
+
+    background-color: #fff;
+
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+
+    border-radius: 10px;
+
+}
+ 
+/* Header */
+
+h1 {
+
+    text-align: center;
+
+    color: #2c3e50;
+
+}
+ 
+/* Form */
+
+form {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+ 
+input[type="number"] {
+
+    padding: 8px;
+
+    font-size: 16px;
+
+    width: 80px;
+
+    margin-right: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+}
+ 
+/* Submit Button */
+
+button {
+
+    padding: 10px 20px;
+
+    font-size: 16px;
+
+    background-color: #2980b9;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+}
+ 
+button:hover {
+
+    background-color: #3498db;
+
+}
+ 
+/* Table */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+
+}
+ 
+table th, table td {
+
+    border: 1px solid #ddd;
+
+    padding: 12px;
+
+    text-align: center;
+
+}
+ 
+table th {
+
+    background-color: #2980b9;
+
+    color: white;
+
+    font-weight: bold;
+
+}
+ 
+table tr:nth-child(even) {
+
+    background-color: #f2f2f2;
+
+}
+ 
+table tr:hover {
+
+    background-color: #e0f0ff;
+
+}
+ 
+/* Footer Button */
+
+.footer-button {
+
+    display: block;
+
+    width: 200px;
+
+    margin: 30px auto 0 auto;
+
+    padding: 12px 20px;
+
+    font-size: 16px;
+
+    background-color: #27ae60;
+
+    color: white;
+
+    text-align: center;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    text-decoration: none;
+
+}
+ 
+.footer-button:hover {
+
+    background-color: #2ecc71;
+
+}
+</style>
+ 
